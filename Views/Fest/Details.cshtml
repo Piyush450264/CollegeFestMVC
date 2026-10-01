@@ -1,0 +1,57 @@
+@model Participant
+@{
+    ViewData["Title"] = "Participant Details";
+    var eventItem = ViewBag.Event as Event;
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h2 mb-1">Participant Details</h1>
+        <p class="text-muted mb-0">Complete registration information for the selected participant.</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to Index</a>
+</div>
+
+@if (TempData["RegistrationMessage"] is string message)
+{
+    <div class="alert alert-success" role="alert"><strong>Success:</strong> @message</div>
+}
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white">Registration Information</div>
+            <div class="card-body p-0">
+                <dl class="row mb-0 p-4">
+                    <dt class="col-sm-4">Participant ID</dt><dd class="col-sm-8">@Model.ParticipantId</dd>
+                    <dt class="col-sm-4">Participant Name</dt><dd class="col-sm-8">@Model.ParticipantName</dd>
+                    <dt class="col-sm-4">Email</dt><dd class="col-sm-8">@Model.Email</dd>
+                    <dt class="col-sm-4">Department</dt><dd class="col-sm-8">@Model.Department</dd>
+                    <dt class="col-sm-4">Year</dt><dd class="col-sm-8">@Model.Year</dd>
+                    <dt class="col-sm-4">Event Name</dt><dd class="col-sm-8">@Model.EventName</dd>
+                    <dt class="col-sm-4">Team Event</dt><dd class="col-sm-8">@(Model.IsTeamEvent ? "Yes" : "No")</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header">Registration Summary</div>
+            <div class="card-body">
+                <p class="mb-2 text-muted">Registration Status</p>
+                <p><span class="badge @Model.GetStatusBadgeClass() fs-6">@Model.GetRegistrationStatus()</span></p>
+
+                @if (eventItem is not null)
+                {
+                    <hr />
+                    <p class="mb-2 text-muted">Registration Fee</p>
+                    <p class="fs-4 fw-bold">@eventItem.RegistrationFee.ToString("C")</p>
+                    <p class="mb-2 text-muted">Fee Category</p>
+                    <p><span class="badge bg-primary">@eventItem.GetFeeCategory()</span></p>
+                    <p class="small text-muted mb-0">Maximum participants: @eventItem.MaximumParticipants</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

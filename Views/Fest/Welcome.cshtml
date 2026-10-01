@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Welcome";
+}
+
+<div class="hero rounded-4 p-5 mb-4">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+            <span class="badge bg-light text-dark mb-3">College Technical Fest</span>
+            <h1 class="display-5 fw-bold">Welcome to the Technical Fest Registration Portal</h1>
+            <p class="lead mb-4">Register participants for technical events, view submitted registrations, and inspect participant details.</p>
+            <div class="d-flex flex-wrap gap-2">
+                <a class="btn btn-light btn-lg" asp-action="Register">Register Participant</a>
+                <a class="btn btn-outline-light btn-lg" asp-action="Index">View Registrations</a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h5 class="card-title">Portal Summary</h5>
+                    <div class="row text-center mt-3">
+                        <div class="col-6">
+                            <div class="fs-2 fw-bold">@ViewBag.EventCount</div>
+                            <small class="text-muted">Events</small>
+                        </div>
+                        <div class="col-6">
+                            <div class="fs-2 fw-bold">@ViewBag.RegistrationCount</div>
+                            <small class="text-muted">Registrations</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0"><div class="card-body"><h5>1. Register</h5><p class="text-muted mb-0">Enter participant information with ASP.NET Core validation.</p></div></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0"><div class="card-body"><h5>2. Review</h5><p class="text-muted mb-0">See all submitted registrations in a Bootstrap table.</p></div></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0"><div class="card-body"><h5>3. Details</h5><p class="text-muted mb-0">Open a participant record to see status and fee category.</p></div></div>
+    </div>
+</div>
